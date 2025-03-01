@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface CurrebcyState {
+export interface CurrebcyState {
   currency: number;
   currencyName: string;
   setCurrencyName: (name: string) => void;
@@ -9,7 +9,7 @@ interface CurrebcyState {
   reset: () => void;
 }
 
-const useCurrencyStore = create<CurrebcyState>()((set) => ({
+export const useCurrencyStore = create<CurrebcyState>()((set) => ({
   currency: 0,
   currencyName: '',
 
@@ -19,5 +19,3 @@ const useCurrencyStore = create<CurrebcyState>()((set) => ({
   decrease: (by) => set((state) => ({ currency: state.currency - by })),
   reset: () => set({ currency: 0 }),
 }));
-
-export default useCurrencyStore;

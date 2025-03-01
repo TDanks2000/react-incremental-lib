@@ -18,9 +18,12 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^22.13.7",
     "@types/react": "^18.3.18",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.5",
     "prettier": "^3.5.2",
     "rollup": "^4.34.8",
+    "rollup-plugin-delete": "^3.0.0",
     "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tslib": "^2.8.1",
     "typescript": "^5.8.2"

@@ -1,28 +1,12 @@
 import { useState } from 'react';
-import useCurrencyStore from '../stores/currency';
+import { useCurrencyStore } from '../stores';
+import {
+  UpgradeNonSellable,
+  UpgradeSellable,
+  UpgradeStatic,
+} from '../types/types';
 
-type UseUpgradeStaticProps = {
-  upgradeName: string;
-  cost: number;
-  onUpgrade: () => void;
-  onBuy: () => void;
-  onBuyAll: () => void;
-  onBuyCustom: (amount: number) => void;
-};
-
-type UseUpgradeSellableProps = {
-  isSellable: true;
-  onSell: () => void;
-  onSellAll: () => void;
-  onSellCustom: (amount: number) => void;
-};
-
-type UseUpgradeNonSellableProps = {
-  isSellable: false;
-};
-
-type UseUpgradeProps = UseUpgradeStaticProps &
-  (UseUpgradeSellableProps | UseUpgradeNonSellableProps);
+type UseUpgradeProps = UpgradeStatic & (UpgradeSellable | UpgradeNonSellable);
 
 export const useUpgrade = (props: UseUpgradeProps) => {
   const [owned, setOwned] = useState(0);

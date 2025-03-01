@@ -1,40 +1,49 @@
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import typescript from "@rollup/plugin-typescript";
-import dts from "rollup-plugin-dts";
-
-import terser from "@rollup/plugin-terser";
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import del from 'rollup-plugin-delete';
+import dts from 'rollup-plugin-dts';
+import esbuild from 'rollup-plugin-esbuild';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
-import packageJson from "./package.json" with { type: "json" };
+import packageJson from './package.json' with { type: 'json' };
 
-export default [
-  {
-    input: "src/index.ts",
-    output: [
-      {
-        file: packageJson.main,
-        format: "cjs",
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: "esm",
-        sourcemap: true,
-      },
-    ],
-    plugins: [  
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+const INPUT_FILE = 'src/index.ts';
 
-      terser(),
-    ],
-  },
-  {
-    input: "dist/esm/types/index.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "esm" }],
-    plugins: [dts()],
-  },
-];
+const mainBuild = {
+  input: INPUT_FILE,
+  output: [
+    {
+      file: packageJson.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
+    {
+      file: packageJson.module,
+      format: 'esm',
+      sourcemap: true,
+    },
+  ],
+  plugins: [
+    del({ targets: 'dist/*', hook: 'buildStart' }),
+    peerDepsExternal(),
+    resolve(),
+    commonjs(),
+    esbuild({
+      target: 'es2020',
+      minify: true,
+    }),
+  ],
+};
+
+const dtsBuild = {
+  input: INPUT_FILE,
+  output: [
+    {
+      file: 'dist/index.d.ts',
+      format: 'esm',
+    },
+  ],
+  plugins: [dts()],
+};
+
+export default [mainBuild, dtsBuild];
