@@ -1,0 +1,21 @@
+# Ignore configuration files
+.prettierrc
+.prettierignore
+.gitignore
+rollup.config.mjs
+tsconfig.json
+bun.lockb
+
+# Ignore source and examples (if you only want to publish the build output)
+src/
+examples/
+
+# Ignore local environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore build or test output (if any)
+coverage/
+tests/
+test/

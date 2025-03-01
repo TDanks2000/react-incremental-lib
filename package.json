@@ -1,13 +1,48 @@
 {
-  "name": "react-incremental-lib",
-  "description": "A React library for incremental games",
-  "version": "0.0.1",
+  "name": "react-incremental-library",
+  "description": "A React library for incremental, idle, and clicker games. Build high-performance, engaging experiences with minimal setup.",
+  "version": "0.0.2",
+  "author": {
+    "name": "Tommy Danks",
+    "url": "https://tdanks.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TDanks2000/react-incremental-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TDanks2000/react-incremental-lib/issues"
+  },
+  "homepage": "https://github.com/TDanks2000/react-incremental-lib#readme",
+  "keywords": [
+    "react",
+    "react-hooks",
+    "incremental-game",
+    "idle-game",
+    "clicker-game",
+    "game-development",
+    "zustand",
+    "javascript",
+    "typescript",
+    "open-source",
+    "idle-progress",
+    "achievements",
+    "resource-management",
+    "game-loop"
+  ],
   "scripts": {
     "build": "rollup -c"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
   "dependencies": {
     "zustand": "^4.5.6"
   },
@@ -27,14 +62,5 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tslib": "^2.8.1",
     "typescript": "^5.8.2"
-  },
-  "peerDependencies": {
-    "react": "^18.3.1"
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts"
+  }
 }

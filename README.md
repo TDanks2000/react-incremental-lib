@@ -17,7 +17,7 @@ A collection of **high-performance React hooks** designed for incremental, click
 ## 📦 Installation
 
 ```
-[npm | bun | yarn | pnpm] add react-incremental-lib
+[npm | bun | yarn | pnpm] add react-incremental-library
 ```
 
 ---
@@ -31,7 +31,7 @@ Each hook is designed with simplicity and flexibility in mind. Here are a few us
 Runs a function at a fixed FPS to handle frame-based updates.
 
 ```
-import { useGameLoop } from "react-incremental-lib";
+import { useGameLoop } from "react-incremental-library";
 
 useGameLoop({
   fps: 60,
@@ -46,7 +46,7 @@ useGameLoop({
 Manages a click-based resource.
 
 ```
-import { useClicker } from "react-incremental-lib";
+import { useClicker } from "react-incremental-library";
 
 const { count, handleClick } = useClicker({
   onClick: (val) => console.log("Clicked!", val)
@@ -60,7 +60,7 @@ const { count, handleClick } = useClicker({
 Tracks when a condition is met and unlocks achievements.
 
 ```
-import { useAchievement } from "react-incremental-lib";
+import { useAchievement } from "react-incremental-library";
 
 const { unlocked } = useAchievement({
   name: "First Click",
@@ -76,7 +76,7 @@ const { unlocked } = useAchievement({
 Increases currency automatically over time.
 
 ```
-import { useAutoIncrement } from "react-incremental-lib";
+import { useAutoIncrement } from "react-incremental-library";
 
 const { pause, resume, isPaused } = useAutoIncrement({
   interval: 1000,
@@ -92,7 +92,7 @@ const { pause, resume, isPaused } = useAutoIncrement({
 Prevents resources from exceeding a maximum limit.
 
 ```
-import { useResourceCap } from "react-incremental-lib";
+import { useResourceCap } from "react-incremental-library";
 
 const { resource, addResource, removeResource } = useResourceCap({
   initialValue: 50,
@@ -107,7 +107,7 @@ const { resource, addResource, removeResource } = useResourceCap({
 Rewards players for time spent away.
 
 ```
-import { useIdleProgress } from "react-incremental-lib";
+import { useIdleProgress } from "react-incremental-library";
 
 const { idleGain } = useIdleProgress({ resourcePerSecond: 2 });
 console.log(`You gained ${idleGain} resources while away!`);
@@ -150,6 +150,8 @@ MIT License © 2025 - Tommy Danks
 ---
 
 ### 🚀 Start Building Your Incremental Game Today!
+
+---
 
 <br />
 
