@@ -150,3 +150,9 @@ MIT License © 2025 - Tommy Danks
 ---
 
 ### 🚀 Start Building Your Incremental Game Today!
+
+<br />
+
+## ❤️
+
+[Reminder that you are great, you are enough, and your presence is valued. If you are struggling with your mental health, please reach out to someone you love and consult a professional. You are not alone; there is a large range of resources online for support and guidance.](https://tdanks.com/mental-health/quote)
