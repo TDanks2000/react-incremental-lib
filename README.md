@@ -145,7 +145,7 @@ PRs are welcome! If you have an idea for a new hook or an improvement, feel free
 
 ## ⚖️ License
 
-MIT License © 2025 - Your Name
+MIT License © 2025 - Tommy Danks
 
 ---
 
