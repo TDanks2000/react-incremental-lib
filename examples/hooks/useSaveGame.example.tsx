@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSaveGame } from 'react-incremental-lib';
+import { useSaveGame } from 'react-incremental-library';
 
 export const UseSaveGameExample = () => {
   const [gameState, setGameState] = useState({ score: 100, level: 2 });

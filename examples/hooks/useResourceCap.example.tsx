@@ -1,5 +1,5 @@
 import React from 'react';
-import { useResourceCap } from 'react-incremental-lib';
+import { useResourceCap } from 'react-incremental-library';
 
 export const UseResourceCapExample = () => {
   const { resource, addResource, removeResource } = useResourceCap({

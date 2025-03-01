@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useGameLoop } from 'react-incremental-lib';
+import { useGameLoop } from 'react-incremental-library';
 
 export const UseGameLoopExample = () => {
   const [frameCount, setFrameCount] = useState(0);

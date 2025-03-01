@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAutoIncrement, useCurrency } from 'react-incremental-lib';
+import { useAutoIncrement, useCurrency } from 'react-incremental-library';
 
 export const UseAutoIncrementExample = () => {
   const { currency } = useCurrency();

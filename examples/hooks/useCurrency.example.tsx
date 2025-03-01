@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrency } from 'react-incremental-lib';
+import { useCurrency } from 'react-incremental-library';
 
 export const UseCurrencyExample = () => {
   const { currency, increase, decrease, currencyName, reset, setCurrencyName } =

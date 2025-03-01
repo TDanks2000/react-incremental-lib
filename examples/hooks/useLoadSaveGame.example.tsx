@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoadSaveGame } from 'react-incremental-lib';
+import { useLoadSaveGame } from 'react-incremental-library';
 
 export const UseLoadSaveGameExample = () => {
   const gameData = useLoadSaveGame<{ score: number; level: number }>();

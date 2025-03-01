@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMultiplier } from 'react-incremental-lib';
+import { useMultiplier } from 'react-incremental-library';
 
 export const UseMultiplierExample = () => {
   const [baseValue, setBaseValue] = useState(10);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUpgrade } from 'react-incremental-lib';
+import { useUpgrade } from 'react-incremental-library';
 
 export const UseUpgradeExample = () => {
   const upgrade = useUpgrade({

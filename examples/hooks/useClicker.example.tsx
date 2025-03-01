@@ -1,5 +1,5 @@
 import React from 'react';
-import { useClicker } from 'react-incremental-lib';
+import { useClicker } from 'react-incremental-library';
 
 export const UseClickerExample = () => {
   const { count, handleClick } = useClicker({

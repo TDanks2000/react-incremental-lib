@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAchievements } from 'react-incremental-lib';
+import { useAchievements } from 'react-incremental-library';
 
 export const UseAchievementsExample = () => {
   const [clicks, setClicks] = useState(0);

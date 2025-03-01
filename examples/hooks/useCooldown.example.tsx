@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useCooldown } from 'react-incremental-lib';
+import { useCooldown } from 'react-incremental-library';
 
 export const UseCooldownExample = () => {
   const [actionReady, setActionReady] = useState(true);

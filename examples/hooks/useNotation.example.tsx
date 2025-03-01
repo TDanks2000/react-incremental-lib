@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNotation } from 'react-incremental-lib';
+import { useNotation } from 'react-incremental-library';
 
 export const UseNotationExample = () => {
   const formattedNumber = useNotation(123456789, 'compact', 'en-US');

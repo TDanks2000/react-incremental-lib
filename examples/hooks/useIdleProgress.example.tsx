@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useIdleProgress } from 'react-incremental-lib';
+import { useIdleProgress } from 'react-incremental-library';
 
 export const UseIdleProgressExample = () => {
   const { idleGain } = useIdleProgress({ resourcePerSecond: 2 });
