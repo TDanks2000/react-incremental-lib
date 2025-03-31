@@ -1,7 +1,7 @@
 {
   "name": "react-incremental-library",
   "description": "A React library for incremental, idle, and clicker games. Build high-performance, engaging experiences with minimal setup.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Tommy Danks",
     "url": "https://tdanks.com"
