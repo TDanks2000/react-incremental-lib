@@ -1,4 +1,4 @@
-import { useCurrencyStore } from '../stores';
+import { useCurrencyStore } from '../../stores';
 
 export const useCurrency = () => {
   const { currency, increase, decrease, currencyName, reset, setCurrencyName } =

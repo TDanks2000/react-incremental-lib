@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useCurrencyStore } from '../stores';
+import { useCurrencyStore } from '../../stores';
 
 interface UseAutoIncrementProps {
   interval: number;

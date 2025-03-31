@@ -1,10 +1,5 @@
 import { useEffect } from 'react';
-
-interface UseSaveGameProps<T> {
-  data: T;
-  onSave?: () => void;
-  onDiscard?: () => void;
-}
+import { UseSaveGameProps } from '../../types/game-mechanics/save.types';
 
 export const useSaveGame = <T>(props: UseSaveGameProps<T>) => {
   const localStorage = window.localStorage;

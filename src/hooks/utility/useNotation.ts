@@ -1,4 +1,4 @@
-import { Notation } from '../types';
+import { Notation } from '../../types';
 
 export const useNotation = (
   number: string | number,

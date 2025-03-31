@@ -1,159 +1,126 @@
 # 🕹️ React Incremental Game Library
 
-A collection of **high-performance React hooks** designed for incremental, clicker, and idle games. 🚀
+<div align="center" style="display: flex; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
 
-## ✨ Features
+[![NPM Version](https://img.shields.io/npm/v/react-incremental-library)](https://www.npmjs.com/package/react-incremental-library)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- Auto-incrementing resources
-- Achievements tracking
-- Clicker mechanics
-- Game loop management
-- Idle progression
-- Resource caps & multipliers
-- And more to come!
+</div>
 
----
+A powerful React library for building incremental, idle, and clicker games. Create engaging experiences with minimal setup using our collection of specialized hooks and stores.
+
+## 🚀 Features
+
+- 🎮 **Game Mechanics** - Clickers, auto-incrementers, and cooldown systems
+- 💰 **Resource Management** - Currency systems and resource caps
+- 🏆 **Progression Systems** - Achievements and upgrades
+- 💾 **Save Systems** - Built-in game save/load functionality
+- ⚡ **Performance Optimized** - Built with React 19 and Zustand
+- 📱 **TypeScript Ready** - Full type support out of the box
 
 ## 📦 Installation
 
-```
-[npm | bun | yarn | pnpm] add react-incremental-library
-```
-
----
-
-## 🛠️ Usage
-
-Each hook is designed with simplicity and flexibility in mind. Here are a few usage examples:
-
-### 🔄 Game Loop (`useGameLoop`)
-
-Runs a function at a fixed FPS to handle frame-based updates.
-
-```
-import { useGameLoop } from "react-incremental-library";
-
-useGameLoop({
-  fps: 60,
-  update: () => console.log("Game loop running!"),
-});
+```bash
+npm install react-incremental-library
+# or
+yarn add react-incremental-library
+# or
+pnpm add react-incremental-library
+# or
+bun add react-incremental-library
 ```
 
----
+## 🎮 Quick Start
 
-### 🖱️ Clicker (`useClicker`)
+### Basic Clicker Example
+```tsx
+import React from 'react';
+import { useClicker } from 'react-incremental-library';
 
-Manages a click-based resource.
+export const ClickerGame = () => {
+  const { count, handleClick } = useClicker({
+    onClick: (val) => console.log(`Clicked! New count: ${val}`),
+  });
 
-```
-import { useClicker } from "react-incremental-library";
-
-const { count, handleClick } = useClicker({
-  onClick: (val) => console.log("Clicked!", val)
-});
-```
-
----
-
-### 🎖️ Achievements (`useAchievement`)
-
-Tracks when a condition is met and unlocks achievements.
-
-```
-import { useAchievement } from "react-incremental-library";
-
-const { unlocked } = useAchievement({
-  name: "First Click",
-  condition: clicks >= 1,
-  onUnlock: () => console.log("Unlocked!")
-});
+  return (
+    <div>
+      <h1>Clicker Game</h1>
+      <p>Click Count: {count}</p>
+      <button onClick={handleClick}>Click Me</button>
+    </div>
+  );
+};
 ```
 
----
+### Auto-Increment Example
+```tsx
+import React from 'react';
+import { useAutoIncrement, useCurrency } from 'react-incremental-library';
 
-### 🔼 Auto-Increment (`useAutoIncrement`)
+export const IdleGame = () => {
+  const { currency } = useCurrency();
+  const { pause, resume, isPaused } = useAutoIncrement({
+    interval: 1000,
+    increaseBy: 5,
+    options: { startPaused: false },
+  });
 
-Increases currency automatically over time.
-
-```
-import { useAutoIncrement } from "react-incremental-library";
-
-const { pause, resume, isPaused } = useAutoIncrement({
-  interval: 1000,
-  increaseBy: 5,
-  onAutoIncrement: (amount) => console.log(`Gained ${amount}!`)
-});
-```
-
----
-
-### 💰 Resource Cap (`useResourceCap`)
-
-Prevents resources from exceeding a maximum limit.
-
-```
-import { useResourceCap } from "react-incremental-library";
-
-const { resource, addResource, removeResource } = useResourceCap({
-  initialValue: 50,
-  max: 100
-});
+  return (
+    <div>
+      <h1>Idle Game</h1>
+      <p>Currency: {currency}</p>
+      <button onClick={isPaused ? resume : pause}>
+        {isPaused ? 'Resume' : 'Pause'}
+      </button>
+    </div>
+  );
+};
 ```
 
----
+## 📚 Available Hooks
 
-### 💤 Idle Progress (`useIdleProgress`)
 
-Rewards players for time spent away.
 
-```
-import { useIdleProgress } from "react-incremental-library";
+### Game Mechanics
+- `useClicker` - Basic clicking mechanics
+- `useAutoIncrement` - Automatic resource generation
+- `useGameLoop` - Game loop management
+- `useTick` - Fine-grained timing control
+- `useIdleProgress` - Track and reward idle time
+- `useOfflineProgress` - Handle offline progression
 
-const { idleGain } = useIdleProgress({ resourcePerSecond: 2 });
-console.log(`You gained ${idleGain} resources while away!`);
-```
+### Resource Management
+- `useCurrency` - Currency management
+- `useProduction` - Resource production system
+- `useResourceCap` - Resource capacity limits
+- `useMultiplier` - Resource multipliers
 
----
+### Progression Systems
+- `useAchievement` - Individual achievement tracking
+- `useAchievements` - Bulk achievement management
+- `useUpgrade` - Upgrade system
+- `usePrestige` - Prestige mechanics
+- `useCooldown` - Action cooldown system
 
-## 📄 API Documentation
+### Utility
+- `useHotKey` - Keyboard shortcuts and combinations
+- `useLoadSaveGame` - Load game progress
+- `useSaveGame` - Save game progress
+- `useNotation` - Number formatting utilities
 
-The following table lists the hooks available in the library. This list is designed to update automatically as new hooks and features are added. For a detailed look at each hook, please visit our [examples folder](./examples).
+## 🏗️ Contributing
 
-| Hook               | Description                                   |
-| ------------------ | --------------------------------------------- |
-| `useGameLoop`      | Runs a function at a fixed FPS.               |
-| `useClicker`       | Manages click-based interactions.             |
-| `useAchievement`   | Unlocks achievements when conditions are met. |
-| `useAchievements`  | Tracks multiple achievements.                 |
-| `useAutoIncrement` | Automates resource accumulation over time.    |
-| `useResourceCap`   | Prevents resources from exceeding max limits. |
-| `useIdleProgress`  | Rewards players for offline time.             |
-| `useMultiplier`    | Applies multipliers to resource generation.   |
-| `useSaveGame`      | Saves game state to local storage.            |
-| `useLoadSaveGame`  | Loads saved game state from local storage.    |
-| `useTick`          | Calls a function at a set interval.           |
-| `useCooldown`      | Implements cooldown mechanics for actions.    |
-| `useUpgrade`       | Handles game upgrades and purchases.          |
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
----
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 🎮 Contributing
+## 📄 License
 
-PRs are welcome! If you have an idea for a new hook or an improvement, feel free to submit a request or open an issue. For usage examples, please refer to our [examples folder](./examples).
-
----
-
-## ⚖️ License
-
-MIT License © 2025 - Tommy Danks
-
----
-
-### 🚀 Start Building Your Incremental Game Today!
-
----
-
-<br />
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ❤️
 

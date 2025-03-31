@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAchievementStore } from '../stores';
+import { useAchievementStore } from '../../stores';
 
 interface UseAchievementProps {
   name: string;
