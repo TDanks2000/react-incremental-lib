@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TDanks2000/react-incremental-lib.git"
+    "url": "git+https://github.com/TDanks2000/react-incremental-lib.git"
   },
   "bugs": {
     "url": "https://github.com/TDanks2000/react-incremental-lib/issues"
