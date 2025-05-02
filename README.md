@@ -1,11 +1,10 @@
 # 🕹️ React Incremental Game Library
 
-<div align="center" style="display: flex; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
-
-[![NPM Version](https://img.shields.io/npm/v/react-incremental-library)](https://www.npmjs.com/package/react-incremental-library)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-</div>
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-incremental-library"><img src="https://img.shields.io/npm/v/react-incremental-library.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/react-incremental-library"><img src="https://img.shields.io/npm/dm/react-incremental-library.svg" alt="npm downloads"></a>
+  <a href="https://github.com/tdanks2000/react-incremental-library/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/react-incremental-library.svg" alt="License: ISC"></a>
+</p>
 
 A powerful React library for building incremental, idle, and clicker games. Create engaging experiences with minimal setup using our collection of specialized hooks and stores.
 
