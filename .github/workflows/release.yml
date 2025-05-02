@@ -9,6 +9,10 @@ on:
       - 'examples/**'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  packages: read
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
@@ -18,34 +22,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: '18.x'
+          bun-version: latest
           registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install
 
       - name: Build package
-        run: npm run build
+        run: bun run build
 
       - name: Get version from package.json
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        uses: step-security/npm-get-version-action@v1
 
       - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.package-version.outputs.current-version }}
-          release_name: Release v${{ steps.package-version.outputs.current-version }}
+          name: Release v${{ steps.package-version.outputs.current-version }}
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to NPM
-        run: npm publish
+        run: bun run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
