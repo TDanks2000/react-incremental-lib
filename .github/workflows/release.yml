@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**.md'
-      - 'examples/**'
+    paths:
+      - 'package.json'
   workflow_dispatch:
 
 permissions:
@@ -34,15 +33,16 @@ jobs:
       - name: Build package
         run: bun run build
 
-      - name: Get version from package.json
-        id: package-version
-        uses: step-security/npm-get-version-action@v1
+      - name: Extract version from package.json
+        id: get_version
+        run: |
+          echo "current-version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.package-version.outputs.current-version }}
-          name: Release v${{ steps.package-version.outputs.current-version }}
+          tag_name: v${{ steps.get_version.outputs.current-version }}
+          name: Release v${{ steps.get_version.outputs.current-version }}
           draft: false
           prerelease: false
         env:
