@@ -3,7 +3,6 @@ import { useUpgrade } from 'react-incremental-library';
 
 export const UseUpgradeExample = () => {
   const upgrade = useUpgrade({
-    upgradeName: 'Upgrade',
     cost: 50,
     isSellable: true,
     onUpgrade: () => console.log('Upgraded!'),

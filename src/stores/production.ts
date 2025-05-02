@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { useCurrencyStore } from '.';
+import { useCurrencyStore } from './currency';
+import { createMiddleware, MiddlewareOptions } from './middleware';
 
 export interface Producer {
   id: string;
@@ -33,7 +34,10 @@ const calculateCost = (producer: Producer): number => {
   return producer.baseCost * Math.pow(producer.costScaling, producer.count);
 };
 
-const calculateProduction = (producer: Producer, producers: Record<string, Producer>): number => {
+const calculateProduction = (
+  producer: Producer,
+  producers: Record<string, Producer>,
+): number => {
   if (!producer.dependencies || producer.dependencies.length === 0) {
     return producer.baseProduction * producer.count;
   }
@@ -47,72 +51,84 @@ const calculateProduction = (producer: Producer, producers: Record<string, Produ
   return producer.baseProduction * producer.count * dependencyMultiplier;
 };
 
-export const useProductionStore = create<ProductionStore>()((set, get) => ({
-  producers: {},
-  lastUpdate: Date.now(),
+export const createProductionStore = (middlewareOptions?: {
+  logger?: MiddlewareOptions;
+  performance?: MiddlewareOptions;
+}) => {
+  const middleware = createMiddleware<ProductionStore>(middlewareOptions);
+  return create<ProductionStore>()(
+    middleware((set, get) => ({
+      producers: {},
+      lastUpdate: Date.now(),
 
-  addProducer: (producer) => set((state) => ({
-    producers: {
-      ...state.producers,
-      [producer.id]: { ...producer, count: 0 }
-    }
-  })),
+      addProducer: (producer) =>
+        set((state) => ({
+          producers: {
+            ...state.producers,
+            [producer.id]: { ...producer, count: 0 },
+          },
+        })),
 
-  buyProducer: (producerId) => {
-    const state = get();
-    const producer = state.producers[producerId];
-    const currency = useCurrencyStore.getState();
+      buyProducer: (producerId) => {
+        const state = get();
+        const producer = state.producers[producerId];
+        const currency = useCurrencyStore.getState();
 
-    if (!producer) return false;
+        if (!producer) return false;
 
-    const cost = calculateCost(producer);
-    if (currency.currency < cost) return false;
+        const cost = calculateCost(producer);
+        if (currency.currency < cost) return false;
 
-    currency.decrease(cost);
-    set((state) => ({
-      producers: {
-        ...state.producers,
-        [producerId]: { ...producer, count: producer.count + 1 }
-      }
-    }));
+        currency.decrease(cost);
+        set((state) => ({
+          producers: {
+            ...state.producers,
+            [producerId]: { ...producer, count: producer.count + 1 },
+          },
+        }));
 
-    return true;
-  },
+        return true;
+      },
 
-  updateProduction: (deltaTime) => {
-    const state = get();
-    const currency = useCurrencyStore.getState();
-    let totalProduction = 0;
+      updateProduction: (deltaTime) => {
+        const state = get();
+        const currency = useCurrencyStore.getState();
+        let totalProduction = 0;
 
-    Object.values(state.producers).forEach(producer => {
-      totalProduction += calculateProduction(producer, state.producers);
-    });
+        Object.values(state.producers).forEach((producer) => {
+          totalProduction += calculateProduction(producer, state.producers);
+        });
 
-    const productionThisTick = (totalProduction * deltaTime) / 1000; // Convert ms to seconds
-    currency.increase(productionThisTick);
+        const productionThisTick = (totalProduction * deltaTime) / 1000; // Convert ms to seconds
+        currency.increase(productionThisTick);
 
-    set({ lastUpdate: Date.now() });
-  },
+        set({ lastUpdate: Date.now() });
+      },
 
-  getProducerCost: (producerId) => {
-    const producer = get().producers[producerId];
-    return producer ? calculateCost(producer) : 0;
-  },
+      getProducerCost: (producerId) => {
+        const producer = get().producers[producerId];
+        return producer ? calculateCost(producer) : 0;
+      },
 
-  getProducerProduction: (producerId) => {
-    const state = get();
-    const producer = state.producers[producerId];
-    return producer ? calculateProduction(producer, state.producers) : 0;
-  },
+      getProducerProduction: (producerId) => {
+        const state = get();
+        const producer = state.producers[producerId];
+        return producer ? calculateProduction(producer, state.producers) : 0;
+      },
 
-  canBuyProducer: (producerId) => {
-    const state = get();
-    const producer = state.producers[producerId];
-    if (!producer) return false;
+      canBuyProducer: (producerId) => {
+        const state = get();
+        const producer = state.producers[producerId];
+        if (!producer) return false;
 
-    const currency = useCurrencyStore.getState();
-    return currency.currency >= calculateCost(producer);
-  },
+        const currency = useCurrencyStore.getState();
+        return currency.currency >= calculateCost(producer);
+      },
 
-  reset: () => set({ producers: {}, lastUpdate: Date.now() })
-}));
+      reset: () => set({ producers: {}, lastUpdate: Date.now() }),
+    })),
+  );
+};
+
+// Default store instance with no middleware for backward compatibility
+export const useProductionStore = createProductionStore();

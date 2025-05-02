@@ -10,6 +10,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "react-incremental-library": "^0.0.2"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-incremental-library": "link:react-incremental-library"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^19.1.2"
   }
 }

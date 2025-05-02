@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { UseTickProps } from '../../types/game-mechanics/timing.types';
+import { UseTickProps } from '../../types';
 
 type UseTickPropsWithEnabled = Omit<UseTickProps, 'onTick'> & {
   callback: () => void;
   enabled?: boolean;
-}
+};
 
 export const useTick = ({
   interval,

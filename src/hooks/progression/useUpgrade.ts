@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import { UpgradeNonSellable, UpgradeSellable, UpgradeStatic } from '../../types';
 import { useCurrencyStore } from '../../stores';
+import {
+  UpgradeNonSellable,
+  UpgradeSellable,
+  UpgradeStatic,
+} from '../../types';
 
 type UseUpgradeProps = UpgradeStatic & (UpgradeSellable | UpgradeNonSellable);
 

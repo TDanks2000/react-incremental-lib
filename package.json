@@ -41,26 +41,26 @@
     "dist"
   ],
   "peerDependencies": {
-    "react": "^18.3.1"
+    "react": "^19.1.0"
   },
   "dependencies": {
-    "zustand": "^4.5.6"
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.3",
-    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^22.13.7",
-    "@types/react": "^18.3.18",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.1.2",
     "@types/rollup-plugin-peer-deps-external": "^2.2.5",
-    "prettier": "^3.5.2",
-    "rollup": "^4.34.8",
-    "rollup-plugin-delete": "^3.0.0",
-    "rollup-plugin-dts": "^6.1.1",
+    "prettier": "^3.5.3",
+    "rollup": "^4.40.1",
+    "rollup-plugin-delete": "^3.0.1",
+    "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-esbuild": "^6.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tslib": "^2.8.1",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   }
 }

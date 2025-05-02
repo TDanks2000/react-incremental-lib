@@ -1,5 +1,4 @@
-import { useCurrencyStore, usePrestigeStore } from "../../stores";
-
+import { useCurrencyStore, usePrestigeStore } from '../../stores';
 
 export const usePrestige = () => {
   const store = usePrestigeStore();
@@ -7,7 +6,9 @@ export const usePrestige = () => {
 
   // Update canPrestige based on currency value
   if (currency.currency >= store.prestigeThreshold !== store.canPrestige) {
-    usePrestigeStore.setState({ canPrestige: currency.currency >= store.prestigeThreshold });
+    usePrestigeStore.setState({
+      canPrestige: currency.currency >= store.prestigeThreshold,
+    });
   }
 
   return {
@@ -18,6 +19,6 @@ export const usePrestige = () => {
     prestige: store.prestige,
     setPrestigeThreshold: store.setPrestigeThreshold,
     registerResetCallback: store.registerResetCallback,
-    reset: store.reset
+    reset: store.reset,
   };
 };

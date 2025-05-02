@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { useCurrencyStore } from '.';
+import { useCurrencyStore } from './currency';
 
 interface PrestigeState {
   prestigePoints: number;
@@ -25,36 +25,42 @@ export const usePrestigeStore = create<PrestigeStore>()((set, get) => ({
   canPrestige: false,
   prestigeResetCallbacks: [],
 
-  addPrestigePoints: (amount) => set((state) => ({
-    prestigePoints: state.prestigePoints + amount,
-    prestigeMultiplier: state.prestigeMultiplier + amount * 0.1
-  })),
+  addPrestigePoints: (amount) =>
+    set((state) => ({
+      prestigePoints: state.prestigePoints + amount,
+      prestigeMultiplier: state.prestigeMultiplier + amount * 0.1,
+    })),
 
-  setPrestigeMultiplier: (multiplier) => set({ prestigeMultiplier: multiplier }),
+  setPrestigeMultiplier: (multiplier) =>
+    set({ prestigeMultiplier: multiplier }),
 
   setPrestigeThreshold: (threshold) => set({ prestigeThreshold: threshold }),
 
-  registerResetCallback: (callback) => set((state) => ({
-    prestigeResetCallbacks: [...state.prestigeResetCallbacks, callback]
-  })),
+  registerResetCallback: (callback) =>
+    set((state) => ({
+      prestigeResetCallbacks: [...state.prestigeResetCallbacks, callback],
+    })),
 
   prestige: () => {
     const state = get();
     const currency = useCurrencyStore.getState();
 
     if (currency.currency >= state.prestigeThreshold) {
-      const prestigePointsGained = Math.floor(Math.sqrt(currency.currency / state.prestigeThreshold));
+      const prestigePointsGained = Math.floor(
+        Math.sqrt(currency.currency / state.prestigeThreshold),
+      );
       state.addPrestigePoints(prestigePointsGained);
-      state.prestigeResetCallbacks.forEach(callback => callback());
+      state.prestigeResetCallbacks.forEach((callback) => callback());
       currency.reset();
     }
   },
 
-  reset: () => set({
-    prestigePoints: 0,
-    prestigeMultiplier: 1,
-    prestigeThreshold: 1000,
-    canPrestige: false,
-    prestigeResetCallbacks: []
-  })
+  reset: () =>
+    set({
+      prestigePoints: 0,
+      prestigeMultiplier: 1,
+      prestigeThreshold: 1000,
+      canPrestige: false,
+      prestigeResetCallbacks: [],
+    }),
 }));

@@ -1,4 +1,5 @@
 export * from './achievement';
 export * from './currency';
-export * from './production';
+export * from './middleware';
 export * from './prestige';
+export * from './production';
